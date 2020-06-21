@@ -7,3 +7,8 @@ def home(request):
     api = requests.get('https://api.github.com/users?since=' + str(randint(0, 99999)))
     api_json = api.json()
     return render(request, 'home.html', {'api': api_json})
+
+
+def user(request):
+    user = request.POST['user']
+    return render(request, 'user.html', {'user': user})
