@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>hello_{{user}}!</h1>
-
+    <!--<h1>hello_{{user}}!</h1>-->
+    {% if notfound %}
+        <h2>{{notfound}}</h2>
+    {% else %}
+        <div class="card" style="width: 18rem;">
+          <img src="{{api.avatar_url}}" class="card-img-top" alt="avatar_url">
+          <div class="card-body">
+            <h5 class="card-title">{{api.login}}</h5>
+              <p class="card-text">{{api.login}}的github</p>
+            <a href="{{api.html_url}} " target="_blank" class="btn btn-primary">访问</a>
+          </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

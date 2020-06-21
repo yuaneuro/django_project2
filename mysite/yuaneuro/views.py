@@ -10,5 +10,11 @@ def home(request):
 
 
 def user(request):
-    user = request.POST['user']
-    return render(request, 'user.html', {'user': user})
+    if request.method == 'POST':
+        user = request.POST['user']
+        api = requests.get('https://api.github.com/users/'+user)
+        api_json = api.json()
+        return render(request, 'user.html', {'user': user, 'api': api_json})
+    else:
+        notfound = 'please input user'
+        return render(request, 'user.html', {'notfound': notfound})
